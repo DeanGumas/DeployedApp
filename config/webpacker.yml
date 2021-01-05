@@ -6,14 +6,15 @@ default: &default
   public_root_path: public
   public_output_path: packs
   cache_path: tmp/cache/webpacker
-  webpack_compile_output: true
+  webpack_compile_output: false
 
+ 
   # Additional paths webpack should lookup modules
   # ['app/assets', 'engine/foo/app/assets']
-  additional_paths: []
+  additional_paths: ['app/assets']
 
   # Reload manifest.json on all requests so we reload latest compiled packs
-  cache_manifest: false
+  cache_manifest: true
 
   # Extract and emit a css file
   extract_css: false
@@ -49,7 +50,7 @@ default: &default
 
 development:
   <<: *default
-  compile: true
+  compile: false
 
   # Reference: https://webpack.js.org/configuration/dev-server/
   dev_server:
@@ -71,10 +72,9 @@ development:
     watch_options:
       ignored: '**/node_modules/**'
 
-
 test:
   <<: *default
-  compile: true
+  compile: false
 
   # Compile test packs to a separate directory
   public_output_path: packs-test
@@ -86,7 +86,7 @@ production:
   compile: false
 
   # Extract and emit a css file
-  extract_css: true
+  extract_css: false
 
   # Cache manifest.json for performance
   cache_manifest: true
